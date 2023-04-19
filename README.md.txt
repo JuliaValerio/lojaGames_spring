@@ -26,5 +26,5 @@ $ cd lojaGames_spring
 ```
 
 
-## :dart: Status do projeto
-*✔️ em andamento*
+## :dart: Mais sobre como o projeto foi feito :)
+*[Conteúdo educacional NOTION](https://en.wikipedia.org/wiki/Donald_Knuth).*
