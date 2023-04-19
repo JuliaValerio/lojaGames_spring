@@ -1,6 +1,6 @@
 package com.generation.lojagames.model;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -37,7 +37,7 @@ public class Produto {
 	private Integer quantidade;
 	
 	@NotBlank(message = "O atributo data Lancamento é Obrigatório!")
-	private LocalDateTime dataLancamento;
+	private LocalDate dataLancamento;
 	
 	@NotBlank(message = "O atributo preço é Obrigatório!")
 	private Integer preco;
@@ -84,11 +84,11 @@ public class Produto {
 		this.quantidade = quantidade;
 	}
 
-	public LocalDateTime getDataLancamento() {
+	public LocalDate getDataLancamento() {
 		return dataLancamento;
 	}
 
-	public void setDataLancamento(LocalDateTime dataLancamento) {
+	public void setDataLancamento(LocalDate dataLancamento) {
 		this.dataLancamento = dataLancamento;
 	}
 
@@ -107,10 +107,9 @@ public class Produto {
 	public void setFoto(String foto) {
 		this.foto = foto;
 	}
-	/*Criar os metodos get e set do objeto tema*/
 	
 	@ManyToOne
-	@JsonIgnoreProperties("postagem")
+	@JsonIgnoreProperties("categoria")
 	private Categoria categoria;
 	
 	public Categoria getCategoria() {
