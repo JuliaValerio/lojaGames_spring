@@ -63,9 +63,6 @@ public class CategoriaController {
 	
 	@PutMapping
 	public ResponseEntity<?> put(@Valid @RequestBody Categoria categoria){
-	    if (!produtoRepository.existsById(categoria.getId())) {
-	        return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-	    }
 	    return categoriaRepository.findById(categoria.getId())
 	            .map(resposta -> {
 	            	categoriaRepository.save(categoria);
