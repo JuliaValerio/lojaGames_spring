@@ -33,7 +33,7 @@ public class ProdutoController {
 		private CategoriaRepository categoriaRepository;
 		
 		@GetMapping
-		public ResponseEntity<List<Produto>> getAll(@PathVariable Long id){
+		public ResponseEntity<List<Produto>> getAll(){
 			return ResponseEntity.ok(produtoRepository.findAll());
 		}
 		

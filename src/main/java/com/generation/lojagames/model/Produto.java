@@ -11,6 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -33,14 +34,14 @@ public class Produto {
 	@Size(min = 2, max = 255, message = "O atributo console deve ter no minimo 2 e no maximo 255 caracteres")
 	private String console;
 	
-	@NotBlank(message = "O atributo quantidade é Obrigatório!")
+	@NotNull(message = "O atributo data Lancamento é Obrigatório!")
 	private Integer quantidade;
 	
-	@NotBlank(message = "O atributo data Lancamento é Obrigatório!")
+	@NotNull(message = "O atributo data Lancamento é Obrigatório!")
 	private LocalDate dataLancamento;
-	
-	@NotBlank(message = "O atributo preço é Obrigatório!")
-	private Integer preco;
+
+	@NotNull(message = "O atributo preco é Obrigatório!")
+	private Double preco;
 	
 	private String foto;
 	
@@ -92,11 +93,11 @@ public class Produto {
 		this.dataLancamento = dataLancamento;
 	}
 
-	public Integer getPreco() {
+	public Double getPreco() {
 		return preco;
 	}
 
-	public void setPreco(Integer preco) {
+	public void setPreco(Double preco) {
 		this.preco = preco;
 	}
 
