@@ -26,4 +26,4 @@ $ cd lojaGames_spring
 
 
 ## :dart: Mais sobre como o projeto foi feito :)
-*[Conteúdo educacional NOTION](https://wave-chiller-03a.notion.site/a904659b3f3c4c03bcae03b23b859021?v=dd994a143d094bbc9f8e5a49c6c04e22).*
+*[Conteúdo NOTION](https://wave-chiller-03a.notion.site/a904659b3f3c4c03bcae03b23b859021?v=dd994a143d094bbc9f8e5a49c6c04e22).*
