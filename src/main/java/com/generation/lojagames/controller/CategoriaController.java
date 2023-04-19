@@ -55,20 +55,20 @@ public class CategoriaController {
 	
 	@PostMapping
 	public ResponseEntity<Categoria> post(@Valid @RequestBody Categoria categoria) {
-	    if (!produtoRepository.existsById(categoria.getId())) {
+	    if (produtoRepository.existsById(categoria.getId())) {
 	        return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 	    }
 	    return ResponseEntity.status(HttpStatus.CREATED).body(categoriaRepository.save(categoria));
 	}
 	
 	@PutMapping
-	public ResponseEntity<?> put(@Valid @RequestBody Categoria produto){
-	    if (!produtoRepository.existsById(produto.getId())) {
+	public ResponseEntity<?> put(@Valid @RequestBody Categoria categoria){
+	    if (!produtoRepository.existsById(categoria.getId())) {
 	        return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 	    }
-	    return categoriaRepository.findById(produto.getId())
+	    return categoriaRepository.findById(categoria.getId())
 	            .map(resposta -> {
-	            	categoriaRepository.save(produto);
+	            	categoriaRepository.save(categoria);
 	                return ResponseEntity.status(HttpStatus.OK).build();
 	            })
 	            .orElse(ResponseEntity.status(HttpStatus.BAD_REQUEST).build());
