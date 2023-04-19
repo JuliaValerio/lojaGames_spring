@@ -35,7 +35,7 @@ public class CategoriaController {
 	
 
 	@GetMapping
-	public ResponseEntity<List<Categoria>> getAll(@PathVariable Long id){
+	public ResponseEntity<List<Categoria>> getAll(){
 		return ResponseEntity.ok(categoriaRepository.findAll());
 	}
 	
@@ -50,7 +50,7 @@ public class CategoriaController {
 	public ResponseEntity<List<Categoria>> getByTitulo(@PathVariable String tipo) {
 	    List<Categoria> categoria = categoriaRepository.findAllByTipoContainingIgnoreCase(tipo);
 	    /*IF ternario*/
-	    return categoria.isEmpty() ? ResponseEntity.status(HttpStatus.NOT_FOUND).build() : ResponseEntity.status(HttpStatus.OK).build();
+	    return categoria.isEmpty() ? ResponseEntity.status(HttpStatus.NOT_FOUND).build() : ResponseEntity.status(HttpStatus.OK).body(categoria);
 	}
 	
 	@PostMapping
