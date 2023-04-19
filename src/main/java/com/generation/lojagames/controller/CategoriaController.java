@@ -54,10 +54,7 @@ public class CategoriaController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Categoria> post(@Valid @RequestBody Categoria categoria) {
-	    if (produtoRepository.existsById(categoria.getId())) {
-	        return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-	    }
+	public ResponseEntity<Categoria> post(@RequestBody Categoria categoria) {
 	    return ResponseEntity.status(HttpStatus.CREATED).body(categoriaRepository.save(categoria));
 	}
 	

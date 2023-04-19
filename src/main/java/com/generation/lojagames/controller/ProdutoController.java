@@ -1,5 +1,6 @@
 package com.generation.lojagames.controller;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,10 +54,9 @@ public class ProdutoController {
 		
 		@PostMapping
 		public ResponseEntity<Produto> post(@Valid @RequestBody Produto produto) {
-		    if (!categoriaRepository.existsById(produto.getId())) {
-		        return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-		    }
-		    return ResponseEntity.status(HttpStatus.CREATED).body(produtoRepository.save(produto));
+		    return categoriaRepository.findById(produto.getCategoria().getId())
+		            .map(categoria -> ResponseEntity.status(HttpStatus.CREATED).body(produtoRepository.save(produto)))
+		            .orElse(ResponseEntity.status(HttpStatus.BAD_REQUEST).build());
 		}
 		
 		@PutMapping
@@ -82,4 +82,11 @@ public class ProdutoController {
 					.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
 
 		}
+		
+		@GetMapping("/preco_maior/{preco_maior}")
+		public ResponseEntity<Produto> getByPrecoMaior(@PathVariable BigDecimal preco) {
+			return null;
+		}
+		
+
 }

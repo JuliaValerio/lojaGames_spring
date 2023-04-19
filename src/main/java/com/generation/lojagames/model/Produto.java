@@ -1,5 +1,6 @@
 package com.generation.lojagames.model;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -41,7 +42,7 @@ public class Produto {
 	private LocalDate dataLancamento;
 
 	@NotNull(message = "O atributo preco é Obrigatório!")
-	private Double preco;
+	private BigDecimal preco;
 	
 	private String foto;
 	
@@ -93,11 +94,11 @@ public class Produto {
 		this.dataLancamento = dataLancamento;
 	}
 
-	public Double getPreco() {
+	public BigDecimal  getPreco() {
 		return preco;
 	}
 
-	public void setPreco(Double preco) {
+	public void setPreco(BigDecimal  preco) {
 		this.preco = preco;
 	}
 
