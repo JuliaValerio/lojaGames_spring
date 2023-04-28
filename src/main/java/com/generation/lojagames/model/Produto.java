@@ -12,40 +12,49 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PositiveOrZero;
 import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "tb_produtos")
 public class Produto {
-	
+	// Atributos
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotBlank(message = "O atributo texto é Obrigatório!")
-	@Size(min = 3, max = 255, message = "O atributo nome deve ter no minimo 3 e no maximo 255 caracteres")
+	@NotBlank
+	@Size(min = 1, max = 255, message = "O nome do produto deve ter entre 1 e 255 caracteres!")
 	private String nome;
 	
-	@NotBlank(message = "O atributo descricao é Obrigatório!")
-	@Size(min = 3, max = 1000, message = "O atributo descricao deve ter no minimo 3 e no maximo 1000 caracteres")
+	@NotBlank
+	@Size(min = 1, max = 510, message = "A descricao do produto deve ter entre 1 e 510 caracteres!")
 	private String descricao;
 	
-	@NotBlank(message = "O atributo console é Obrigatório!")
-	@Size(min = 2, max = 255, message = "O atributo console deve ter no minimo 2 e no maximo 255 caracteres")
-	private String console;
-	
-	@NotNull(message = "O atributo data Lancamento é Obrigatório!")
-	private Integer quantidade;
-	
-	@NotNull(message = "O atributo data Lancamento é Obrigatório!")
-	private LocalDate dataLancamento;
-
-	@NotNull(message = "O atributo preco é Obrigatório!")
+	@PositiveOrZero
 	private BigDecimal preco;
 	
-	private String foto;
+	private LocalDate data_lancamento;
 	
+	@NotBlank
+	@Size(min = 1, max = 255, message = "A plataforma do produto deve ter entre 1 e 255 caracteres!")
+	private String plataforma;
+	
+	@PositiveOrZero
+	private int quantidade;
+	
+	private boolean disponivel;
+	
+	// Relacionamento
+	@ManyToOne
+	@JsonIgnoreProperties("produto")
+	private Categoria categoria;
+	
+	@ManyToOne
+	@JsonIgnoreProperties("produto")
+	private Usuario usuario;
+
+	// Get e Set do produto
 	public Long getId() {
 		return id;
 	}
@@ -70,55 +79,61 @@ public class Produto {
 		this.descricao = descricao;
 	}
 
-	public String getConsole() {
-		return console;
-	}
-
-	public void setConsole(String console) {
-		this.console = console;
-	}
-
-	public Integer getQuantidade() {
-		return quantidade;
-	}
-
-	public void setQuantidade(Integer quantidade) {
-		this.quantidade = quantidade;
-	}
-
-	public LocalDate getDataLancamento() {
-		return dataLancamento;
-	}
-
-	public void setDataLancamento(LocalDate dataLancamento) {
-		this.dataLancamento = dataLancamento;
-	}
-
-	public BigDecimal  getPreco() {
+	public BigDecimal getPreco() {
 		return preco;
 	}
 
-	public void setPreco(BigDecimal  preco) {
+	public void setPreco(BigDecimal preco) {
 		this.preco = preco;
 	}
 
-	public String getFoto() {
-		return foto;
+	public LocalDate getData_lancamento() {
+		return data_lancamento;
 	}
 
-	public void setFoto(String foto) {
-		this.foto = foto;
+	public void setData_lancamento(LocalDate data_lancamento) {
+		this.data_lancamento = data_lancamento;
+	}
+
+	public String getPlataforma() {
+		return plataforma;
+	}
+
+	public void setPlataforma(String plataforma) {
+		this.plataforma = plataforma;
 	}
 	
-	@ManyToOne
-	@JsonIgnoreProperties("categoria")
-	private Categoria categoria;
-	
+	public int getQuantidade() {
+		return quantidade;
+	}
+
+	public void setQuantidade(int quantidade) {
+		this.quantidade = quantidade;
+	}
+
+	public boolean isDisponivel() {
+		return disponivel;
+	}
+
+	public void setDisponivel(boolean disponivel) {
+		this.disponivel = disponivel;
+	}
+
+	// Get e Set da categoria
 	public Categoria getCategoria() {
 		return categoria;
 	}
 
-	public void setTema(Categoria categoria) {
+	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
+	}
+	
+	// Get e Set do usuario
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 }

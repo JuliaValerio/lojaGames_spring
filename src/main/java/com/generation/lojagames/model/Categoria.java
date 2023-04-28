@@ -18,15 +18,21 @@ import jakarta.validation.constraints.Size;
 @Entity
 @Table(name = "tb_categorias")
 public class Categoria {
-	
+	// Atributos
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotBlank(message = "O atributo texto é Obrigatório!")
-	@Size(min = 1, max = 255, message = "O atributo tipo deve ter no minimo 10 e no maximo 255 caracteres")
-	private String tipo;
+	@NotBlank
+	@Size(min = 1, max = 255, message = "O nome da categoria deve ter entre 1 e 255 caracteres!")
+	private String nome;
 	
+	//Relacionamento
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "categoria", cascade = CascadeType.REMOVE)
+	@JsonIgnoreProperties("categoria")
+	private List<Produto> produto;
+	
+	// Get e Set da categoria
 	public Long getId() {
 		return id;
 	}
@@ -35,23 +41,20 @@ public class Categoria {
 		this.id = id;
 	}
 
-	public String getTipo() {
-		return tipo;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "categoria", cascade = CascadeType.REMOVE)
-	@JsonIgnoreProperties("categoria")
-	private List<Produto> produto;
-
+	// Get e Set do produto
 	public List<Produto> getProduto() {
 		return produto;
 	}
 
-	public void setPostagem(List<Produto> produto) {
+	public void setProduto(List<Produto> produto) {
 		this.produto = produto;
 	}
 }
